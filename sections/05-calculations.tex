@@ -1,0 +1,139 @@
+\documentclass[../Lab.tex]{subfiles}
+\begin{document}
+\section{Calculations}
+
+Talk a little about what you're going to do and what definitions you're going to use. You want to start from scratch in the calculations and build up what formulas were used from lecture to show you understand how they were derived.
+\\\\
+Take this formula:
+\begin{equation}
+    L=\frac{\phi_B}{i}
+\end{equation}
+
+Rearrange it a little bit and use it later:
+\begin{equation}
+    \phi_B = Li
+\end{equation}
+
+Take another formula:
+\begin{equation}
+    \frac{d\phi_B}{dt} = L\frac{di}{dt}
+    \label{induction}
+\end{equation}
+
+Represent a part of it differently, talk about where it came from, and why this is valid, etc.
+\begin{equation}
+    \varepsilon = -\frac{d\phi_B}{dt}
+    \label{faraday_eq}
+\end{equation}
+
+Therefore, we can equate \_ and \_
+\begin{equation}
+    \varepsilon = -L\frac{di}{dt}
+\end{equation}
+Talk about why it was significant.
+
+\HectorHatesTrees % this just makes a new page (equivalent to \newpage)
+
+\subsection{Setup 1: An example calculation section}
+
+In our simple RL circuit, we can use Kirchoff's Laws to solve for time to charge the inductor to full EMF and instead use it to find the time it takes to charge halfway for more accuracy.
+
+From a point A in our circuit, we can construct the following equation:
+\begin{equation}
+    \varepsilon - L\frac{di}{dt} - iR = 0
+\end{equation}
+\begin{equation}
+    -L\frac{di}{dt} = iR - \varepsilon
+\end{equation}
+\begin{equation}
+    \frac{di}{dt} = \frac{- iR + \varepsilon}{L}
+\end{equation}
+\begin{equation}
+    \frac{di}{dt} = -\frac{R}{L}(i-\frac{\varepsilon}{R})
+\end{equation}
+\begin{equation}
+    \frac{di}{(i-\frac{\varepsilon}{R})} = -\frac{R}{L}dt
+\end{equation}
+Integrate both sides:
+\begin{equation}
+    \int{\frac{1}{(i-\frac{\varepsilon}{R})}di} = \int{-\frac{R}{L}dt}
+\end{equation}
+\begin{equation}
+    ln(i-\frac{\varepsilon}{R}) = -\frac{R}{L} + A
+\end{equation}
+Take e to the power of both sides of the equation:
+\begin{equation}
+    i-\frac{\varepsilon}{R} = e^{-\frac{R}{L}t}e^A
+\end{equation}
+Solve for current:
+\begin{equation}
+    i = e^{-\frac{R}{L}t}e^A + \frac{\varepsilon}{R}
+\end{equation}
+B := $e^A$
+\begin{equation}
+    i = e^{-\frac{R}{L}t}B + \frac{\varepsilon}{R}
+\end{equation}
+At time = 0s:
+\begin{equation}
+    i(0) = e^0B + \frac{\varepsilon}{R}
+\end{equation}
+\begin{equation}
+    0 = 1B + \frac{\varepsilon}{R}
+\end{equation}
+\begin{equation}
+    B = -\frac{\varepsilon}{R}
+\end{equation}
+Therefore this gives us the equation for current through our circuit as a function of time:
+\begin{equation}
+    i(t) = \frac{\varepsilon}{R}(1-e^{-\frac{t}{\tau}})
+\end{equation}
+To find voltage, we simply plug in the equation for current into Ohm's Law:
+\begin{equation}
+    V(t) = i(t) * R
+\end{equation}
+\begin{equation}
+    V(t) = \varepsilon(1-e^{-\frac{t}{\tau}})
+\end{equation}
+Using the half life of an exponential decay, we know:
+\begin{equation}
+     t_{\frac{1}{2}} = \tau{ln(2)}
+\end{equation}
+\begin{equation}
+    \tau = \frac{t_{\frac{1}{2}}}{ln(2)}
+\end{equation}
+In our experiment, we calculated the time constant to be:
+\begin{equation}
+    \tau_{theo} = \frac{\SI{3.8e-6}{s}}{0.693147}
+\end{equation}
+\begin{equation}
+    \tau_{theo} = \SI{5.48224e-6}{s}
+\end{equation}
+Given the equation for inductance:
+\begin{equation}
+    L=\tau{R}
+\end{equation}
+We can find the theoretical inductance of the coil based on the time-series data:
+\begin{equation}
+    L = \SI{5.48224e-6}{s} * 2160\ohm
+\end{equation}
+\begin{equation}
+    L = 0.011842 \ohm*s
+\end{equation}
+\begin{equation}
+    L = 0.011842H
+\end{equation}
+Comparing this calculated value with the experimental inductance (labelled on the coil $L_{exp} = 7.838mH$), our percent error is as follows:
+\begin{equation}
+    \frac{0.011842H - 0.007838H}{0.011842H}\ x\ 100\%
+\end{equation}
+\begin{equation}
+    0.338119\ x\ 100\%
+\end{equation}
+\begin{equation}
+    \%\ err = 33.81\%
+\end{equation}
+
+\end{document}
+
+\HectorHatesTrees
+
